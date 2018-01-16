@@ -1,6 +1,9 @@
 # wechat_brain
 小程序王者头脑自动刷分工具
 
+## 改进：
+改进：https://github.com/sundy-li/wechat_brain
+
 
 ## 使用步骤：
 Android 设备
