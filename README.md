@@ -4,6 +4,8 @@
 ## 改进：
 改进：https://github.com/sundy-li/wechat_brain
 
+增加adb自动提交功能，思路参考微信跳一跳
+
 
 ## 使用步骤：
 Android 设备
