@@ -18,10 +18,7 @@ Android 设备
 	5. 打开微信并启动王者头脑小程序。
 	6. 正确的答案将在小程序的选项中以【标准答案】或【数字】字样标识，abd模拟提交
 ## 演示：
-
-	![img](https://github.com/chzeze/wetchat_brain/blob/master/show.gif) 
-
-
+![img](https://github.com/chzeze/wetchat_brain/blob/master/show.gif) 
 
 
 
