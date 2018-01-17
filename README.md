@@ -16,7 +16,7 @@ Android 设备
 4. 运行主程序。运行方法（二选一）：
 	安装go(>=1.8)环境后, clone本repo源码到对应`$GOPATH/src/github.com/sundy-li/`下, 进入源码目录后,执行 `go run cmd/main.go`。
 5. 打开微信并启动王者头脑小程序。
-6. 正确的答案将在小程序的选项中以【标准答案】或【数字】字样标识，abd模拟提交
+6. 正确的答案将在小程序的选项中以【标准答案】或【数字】字样标识，adb模拟点击
 
 ## 演示：
 ![img](https://github.com/chzeze/wetchat_brain/blob/master/show.gif) 
