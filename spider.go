@@ -43,11 +43,11 @@ func (s *spider) Run(port string) {
 func (s *spider) Init() {
 	requestHandleFunc := func(request *http.Request, ctx *goproxy.ProxyCtx) (req *http.Request, resp *http.Response) {
 		req = request
-		if ctx.Req.URL.Path == `/question/fight/findQuiz` {
+		if ctx.Req.URL.Path == `/question/bat/findQuiz` {
 			bs, _ := ioutil.ReadAll(req.Body)
 			req.Body = ioutil.NopCloser(bytes.NewReader(bs))
 			handleQuestionReq(bs)
-		} else if ctx.Req.URL.Path == `/question/fight/choose` {
+		} else if ctx.Req.URL.Path == `/question/bat/choose` {
 			bs, _ := ioutil.ReadAll(req.Body)
 			req.Body = ioutil.NopCloser(bytes.NewReader(bs))
 			handleChooseReq(bs)
@@ -65,7 +65,7 @@ func (s *spider) Init() {
 		if resp == nil {
 			return resp
 		}
-		if ctx.Req.URL.Path == `/question/fight/findQuiz` {
+		if ctx.Req.URL.Path == `/question/bat/findQuiz` {
 			bs, _ := ioutil.ReadAll(resp.Body)
 			bsNew,ans := handleQuestionResp(bs)
 			
@@ -73,11 +73,11 @@ func (s *spider) Init() {
 			go loop(ans)//提交答案
 			
 
-		} else if ctx.Req.URL.Path == `/question/fight/choose` {
+		} else if ctx.Req.URL.Path == `/question/bat/choose` {
 			bs, _ := ioutil.ReadAll(resp.Body)
 			resp.Body = ioutil.NopCloser(bytes.NewReader(bs))
 			go handleChooseResponse(bs)
-		}else if ctx.Req.URL.Path == `/question/fight/fightResult` {
+		}else if ctx.Req.URL.Path == `/question/bat/fightResult` {
 			go continueFight()//继续挑战
 		}else{
 			//log.Printf(ctx.Req.URL.Path)
@@ -89,6 +89,7 @@ func (s *spider) Init() {
 }
 
 func continueFight() {
+	//log.Printf("继续挑战")
 	time.Sleep(time.Millisecond * 5000)
 	var err error
 	touchX, touchY := strconv.Itoa(550), strconv.Itoa(1400)
@@ -98,8 +99,8 @@ func continueFight() {
 		log.Fatal("模拟点击失败，请检查开发者选项中的 USB 调试安全设置是否打开。")
 	}
 
-	time.Sleep(time.Millisecond * 3000)
-	touchX, touchY = strconv.Itoa(550), strconv.Itoa(1100)
+	time.Sleep(time.Millisecond * 2000)
+	touchX, touchY = strconv.Itoa(550), strconv.Itoa(1850)
 	log.Printf("开始点击，下一场")
 	_, err = exec.Command("adb","shell", "input", "swipe", touchX, touchY,touchX, touchY).Output()
 	if err != nil {
@@ -112,10 +113,10 @@ func loop(ans int) {
 		ans=1
 	}
 	log.Printf("正确答案选项：%d \n",ans)
-	time.Sleep(time.Millisecond * 3000)
+	time.Sleep(time.Millisecond * 3500)
 	var err error
-	touchX, touchY := strconv.Itoa(550), strconv.Itoa(800+200*ans)
-	log.Printf("开始点击答案")
+	touchX, touchY := strconv.Itoa(550), strconv.Itoa(850+200*ans)
+	log.Printf("开始点击")
 	_, err = exec.Command("adb","shell", "input", "swipe", touchX, touchY,touchX, touchY).Output()
 	if err != nil {
 		log.Fatal("模拟点击失败，请检查开发者选项中的 USB 调试安全设置是否打开。")
